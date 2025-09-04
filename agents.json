@@ -1,0 +1,26 @@
+[
+    {
+      "name": "billing service",
+      "extensionNumber": "102",
+      "extensionId": "",
+      "phoneNumber": "",
+      "status": "Available",
+      "waitList": []
+    },
+    {
+      "name": "ordering service",
+      "extensionNumber": "103",
+      "extensionId": "",
+      "phoneNumber": "",
+      "status": "Available",
+      "waitList": []
+    },
+    {
+      "name": "technical support",
+      "extensionNumber": "104",
+      "extensionId": "",
+      "phoneNumber": "",
+      "status": "Available",
+      "waitList": []
+    }
+]

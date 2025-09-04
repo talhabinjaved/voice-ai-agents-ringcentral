@@ -1,0 +1,46 @@
+[
+  {
+    "name": "John Smith",
+    "phoneNumber": "",
+    "ssn": "1234",
+    "zipCode": "94123",
+    "dob": "05/17/1970",
+    "billings": {
+      "last": {
+        "dueDate": "June 01, 2024",
+        "paidDate": "May 30, 2024",
+        "amount": "$249.00"
+      },
+      "next": {
+        "dueDate": "July 01, 2204",
+        "paidDate": "",
+        "amount": "$249.00"
+      }
+    },
+    "callbackRequest": true,
+    "status": "Diamond",
+    "lastNote": ""
+  },
+  {
+    "name": "Shawn Lennon",
+    "phoneNumber": "",
+    "ssn": "6789",
+    "zipCode": "94084",
+    "dob": "01/02/2001",
+    "billings": {
+      "last": {
+        "dueDate": "June 01, 2024",
+        "paidDate": "May 30, 2024",
+        "amount": "$249.00"
+      },
+      "next": {
+        "dueDate": "July 01, 2024",
+        "paidDate": "",
+        "amount": "$249.00"
+      }
+    },
+    "callbackRequest": false,
+    "lastNote": "",
+    "status": "Bronze"
+  }
+]
