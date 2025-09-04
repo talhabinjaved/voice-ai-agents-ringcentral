@@ -1,11 +1,11 @@
 # RingCentral AI Voice Assistant
 
-An intelligent voice assistant built with RingCentral's telephony platform, OpenAI API, and Whisper for speech recognition. This system can handle customer service calls, answer questions, manage billing inquiries, and transfer calls to appropriate agents.
+An intelligent voice assistant built with RingCentral's telephony platform and OpenAI's Realtime API for real-time voice conversations. This system can handle customer service calls, answer questions, manage billing inquiries, and transfer calls to appropriate agents.
 
 ## Features
 
 - 🎯 **Real-time Voice Recognition**: Uses OpenAI Whisper for accurate speech-to-text conversion
-- 🤖 **Intelligent Conversation**: Powered by OpenAI GPT-4 for natural language understanding
+- 🤖 **Intelligent Conversation**: Powered by OpenAI GPT-4 Realtime for natural language understanding
 - 📞 **Call Management**: Automatic call handling, transfer, and routing capabilities  
 - 👥 **Customer Service**: Access customer information, billing details, and order history
 - 🔄 **Agent Transfer**: Smart routing to appropriate departments (billing, technical support, ordering)
@@ -22,15 +22,12 @@ An intelligent voice assistant built with RingCentral's telephony platform, Open
                             ┌───────────────────────────┼───────────────────────────┐
                             │                           ▼                           │
                             │           ┌─────────────────────────────┐             │
-                            │           │      WhisperEngine          │             │
-                            │           │   (Speech Recognition)      │             │
-                            │           └─────────────────────────────┘             │
-                            │                           │                           │
-                            │                           ▼                           │
-                            │           ┌─────────────────────────────┐             │
-                            │           │       OpenAIEngine          │             │
-                            │           │  (Intent Classification     │             │
-                            │           │   & Response Generation)    │             │
+                            │           │    RealtimeEngine          │             │
+                            │           │   (OpenAI Realtime API)    │             │
+                            │           │   - Speech Recognition     │             │
+                            │           │   - Intent Classification  │             │
+                            │           │   - Response Generation    │             │
+                            │           │   - Text-to-Speech        │             │
                             │           └─────────────────────────────┘             │
                             │                           │                           │
                             │                           ▼                           │
@@ -90,17 +87,11 @@ RINGCENTRAL_JWT=Your_JWT_Token
 
 ### 2. OpenAI Configuration
 
-Set up OpenAI API access and configure the required models:
-
-#### Required Models:
-- **GPT-4** for conversation and intent classification
-- **Whisper** for speech-to-text transcription
-- **TTS-1** for text-to-speech conversion
+Set up OpenAI API access for the Realtime API:
 
 Update your `.env` file with OpenAI settings:
 
 ```env
-GPT_SERVER_URL=api.openai.com
 GPT_API_KEY=your_openai_api_key
 ```
 
@@ -110,7 +101,7 @@ GPT_API_KEY=your_openai_api_key
 3. Create a new API key
 4. Copy the API key to your `.env` file
 
-**Note**: The `GPT_SERVER_URL` is set to `api.openai.com` by default and typically doesn't need to be changed.
+**Note**: This project uses OpenAI's Realtime API which provides end-to-end voice conversation capabilities including speech recognition, intent classification, and text-to-speech.
 
 ## Data Configuration
 
@@ -178,7 +169,7 @@ Available departments:
 
 2. **The system will:**
    - Initialize RingCentral connection
-   - Set up Azure OpenAI clients
+   - Set up OpenAI Realtime API connection
    - Start listening for incoming calls
 
 ### Making Test Calls
@@ -212,8 +203,8 @@ The system will ask for verification information like:
 voice-ai-agents-ringcentral/
 ├── index.js                 # Application entry point
 ├── phone-engine.js          # Core call management and business logic
-├── openai-engine.js         # Azure OpenAI integration for chat/TTS
-├── whisper-engine.js        # Azure OpenAI Whisper for speech recognition
+├── realtime-engine.js       # OpenAI Realtime API integration
+├── mock-data.js             # Mock API responses for testing
 ├── customers.json           # Customer database
 ├── agents.json             # Available agents for call transfer
 ├── package.json            # Dependencies and scripts
@@ -230,17 +221,12 @@ voice-ai-agents-ringcentral/
 - Routes calls to appropriate agents
 - Manages audio streaming and RTP packets
 
-### OpenAIEngine (`openai-engine.js`)  
-- Intent classification and response generation using OpenAI GPT-4
-- Text-to-speech conversion using OpenAI TTS-1
-- Handles conversation context and follow-up questions
-- Processes customer service requests
-
-### WhisperEngine (`whisper-engine.js`)
-- Real-time speech-to-text transcription using OpenAI Whisper
-- Audio buffer management and processing
-- Converts mu-law audio to WAV format
-- Handles audio chunk aggregation
+### RealtimeEngine (`realtime-engine.js`)  
+- Integrates with OpenAI's Realtime API for end-to-end voice conversations
+- Handles speech recognition using Whisper
+- Processes intent classification and response generation using GPT-4
+- Manages text-to-speech conversion
+- Maintains conversation context and real-time audio processing
 
 ## Conversation Flow
 
@@ -290,11 +276,11 @@ DEBUG=true node index.js
 
 ### Adding New Features
 
-1. **New Intent Types**: Modify intent classification prompts in `openai-engine.js`
+1. **New Intent Types**: Modify intent classification prompts in `realtime-engine.js`
 2. **Customer Fields**: Update customer data structure in `customers.json`
 3. **Agent Departments**: Add new agent types in `agents.json`
 4. **Conversation Logic**: Extend business logic in `phone-engine.js`
-5. **Model Configuration**: Update OpenAI model parameters in the engine files
+5. **Model Configuration**: Update OpenAI Realtime API parameters in `realtime-engine.js`
 
 ### Testing
 
